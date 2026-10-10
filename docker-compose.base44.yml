@@ -1,0 +1,39 @@
+# Base44 sandbox environment for a static, dependency-free browser game.
+#
+# The project is plain HTML/CSS/JS (index.html + app.js + style.css) with no
+# package manager, no build step and no backend. It is served straight from the
+# cloned source with a bind mount, so edits on disk are served on the next page
+# load; the preview is refreshed with `reload_preview` after a change.
+#
+# Note: the README's `python -m http.server 8000` and this compose service both
+# serve the same files. Host port 3000 is the platform web entry point.
+services:
+  web:
+    image: python:3.12-alpine
+    working_dir: /app
+    command:
+      - python
+      - -m
+      - http.server
+      - "3000"
+      - --bind
+      - "0.0.0.0"
+      - --directory
+      - /app
+    ports:
+      - "3000:3000"
+    volumes:
+      # Serve the live source, never a baked copy.
+      - .:/app
+    environment:
+      # Passed through from the platform; harmless here but kept for parity with
+      # sandbox-aware tooling.
+      - BASE44_PREVIEW_MODE
+    restart: on-failure
+    healthcheck:
+      # python:3.12-alpine ships busybox wget. Probe the real page, not just the port.
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:3000/index.html || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
