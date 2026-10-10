@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goalkeeper: Yang Berusaha Dibuat</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="hud">
+      <div class="hud-box score-box">
+        <span>Score</span>
+        <strong id="score">0 - 0</strong>
+      </div>
+      <div class="hud-box">
+        <span>Level</span>
+        <strong id="level">Medium</strong>
+      </div>
+      <div class="hud-box">
+        <span>Timer</span>
+        <strong id="timer">90</strong>
+      </div>
+    </div>
+
+    <div id="message" class="message">Pilih level dan mulai pertandingan.</div>
+
+    <div id="menu" class="menu visible">
+      <div class="panel">
+        <h1>Goalkeeper: Yang Berusaha Dibuat</h1>
+        <p>3D football goalkeeper challenge with 11v11 AI gameplay.</p>
+
+        <div class="level-grid">
+          <button class="level-btn" data-level="easy">Easy</button>
+          <button class="level-btn active" data-level="medium">Medium</button>
+          <button class="level-btn" data-level="hard">Hard</button>
+        </div>
+
+        <button id="start-game" class="primary">Start Match</button>
+      </div>
+    </div>
+
+    <div id="controls">
+      <button id="leftDive" class="control-btn">Lompat Kiri</button>
+      <button id="rightDive" class="control-btn">Lompat Kanan</button>
+
+      <label class="analog-control" for="analog">
+        <span>Analog</span>
+        <input id="analog" type="range" min="0" max="100" value="50" />
+      </label>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
