@@ -1,0 +1,1 @@
+name = \"goalkiper-yang-berusaha-dibuatai\"\ntype = \"javascript\"\naccount_id = \"\"\nworkers_dev = true\nroute = \"\"\nzone_id = \"\"\n\n[env.production]\nname = \"goalkiper-yang-berusaha-dibuatai-prod\"\n\n[build]\ncommand = \"npm install\"\ncwd = \"./\"\n\n[build.upload]\nformat = \"modules\"\nmain = \"./worker.js\"\n"
